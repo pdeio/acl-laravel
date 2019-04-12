@@ -33,7 +33,7 @@ class EntrustServiceProvider extends ServiceProvider
         //load migrations and routes
         $this->loadMigrationsFrom(__DIR__ . '/../migrations');
     }
-
+ 
     /**
      * Register the service provider.
      *

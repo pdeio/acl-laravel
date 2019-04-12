@@ -83,6 +83,14 @@ Run tables migrations with the artisan migrate command:
 ```bash
 php artisan migrate
 ```
+*Remember, if you use the MYSQL database, define in your `users` table the same engine as the entrust tables. The `MyISAM` engine pattern does not support foreign keys.
+If you have already created the `users` table, modify the structure table.
+
+```php
+    ...
+    $table->engine = "InnoDB";
+    ...
+```
 
 After the migration, four new tables will be present:
 - `roles` &mdash; stores role records

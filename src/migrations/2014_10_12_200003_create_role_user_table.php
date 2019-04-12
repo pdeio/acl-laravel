@@ -33,7 +33,7 @@ class CreateRoleUserTable extends Migration
             $table->foreign($role_foreign_key)->references('id')->on($roles_table)
                 ->onUpdate('cascade')->onDelete('cascade');
 
-            $table->primary(['user_id', 'role_id']);
+            $table->primary([$user_foreign_key, $role_foreign_key]);
         });
     }
     /**

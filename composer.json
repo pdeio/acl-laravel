@@ -31,7 +31,8 @@
         },
         {
             "name": "Paulo De Iovanna",
-            "email": "paulodeiovanna@gmail.com"
+            "email": "paulodeiovanna@gmail.com",
+            "homepage": "http://github.com/pdeio"
         }
     ],
     "require": {

@@ -190,7 +190,7 @@ $role->forceDelete(); // Now force delete will work regardless of whether the pi
 
 ## Usage
 ### Admin
-To set the admin IDs modify the config/entrust.php file. The admin user can manage all ACL cruds. 
+To set the admin IDs modify the `config/entrust.php` file. The admin user can manage all ACL cruds. 
 ```php
     'super_admins' => [
         1,

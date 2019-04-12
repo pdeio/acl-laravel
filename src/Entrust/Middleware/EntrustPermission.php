@@ -41,7 +41,7 @@ class EntrustPermission
 			$permissions = explode(self::DELIMITER, $permissions);
 		}
 
-		if ($this->auth->guest() || (!$request->user()->can($permissions)) && array_search(\Auth::user()->id, \Config::get('acl.super_admins')) === false) {
+		if ($this->auth->guest() || (!$request->user()->can($permissions)) && array_search(\Auth::user()->id, \Config::get('entrust.super_admins')) === false) {
 			abort(403);
 		}
 

@@ -44,7 +44,7 @@ composer require pdeio/entrust
 2) Run the command below to publish the package config file `config/entrust.php`:
 
 ```shell
-php artisan vendor:publish
+php artisan vendor:publish --provider "Pdeio\Entrust\EntrustServiceProvider"
 ```
 
 3) Open your `config/auth.php` and add the following to it:
@@ -59,7 +59,7 @@ php artisan vendor:publish
 ],
 ```
 
-4)  If you want to use [Middleware](#middleware) (requires Laravel 5.1 or later) you also need to add the following:
+4)  If you want to use [Middleware](#middleware) you also need to add the following:
 
 ```php
     'role' => \Pdeio\Entrust\Middleware\EntrustRole::class,

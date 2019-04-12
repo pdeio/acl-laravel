@@ -19,6 +19,7 @@ To create the option to have a superuser without any permissions / roles, but th
         - [User](#user)
         - [Soft Deleting](#soft-deleting)
 - [Usage](#usage)
+    - [Super Admin](#admin)
     - [Concepts](#concepts)
         - [Checking for Roles & Permissions](#checking-for-roles--permissions)
         - [User ability](#user-ability)
@@ -32,22 +33,22 @@ To create the option to have a superuser without any permissions / roles, but th
 
 ## Installation
 
-1) In order to install Laravel 5 Entrust, just run:
+1) In order to install, just run:
 
-```
-"composer require pdeio/entrust"
+```shell
+composer require pdeio/entrust
 ```
 
 2) Open your `config/app.php` and add the following to the `providers` array:
 
 ```php
-Zizaco\Entrust\EntrustServiceProvider::class,
+Pdeio\Entrust\EntrustServiceProvider::class,
 ```
 
 3) In the same `config/app.php` and add the following to the `aliases ` array: 
 
 ```php
-'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
+'Entrust'   => Pdeio\Entrust\EntrustFacade::class,
 ```
 
 4) Run the command below to publish the package config file `config/entrust.php`:
@@ -71,9 +72,9 @@ php artisan vendor:publish
 6)  If you want to use [Middleware](#middleware) (requires Laravel 5.1 or later) you also need to add the following:
 
 ```php
-    'role' => \Zizaco\Entrust\Middleware\EntrustRole::class,
-    'permission' => \Zizaco\Entrust\Middleware\EntrustPermission::class,
-    'ability' => \Zizaco\Entrust\Middleware\EntrustAbility::class,
+    'role' => \Pdeio\Entrust\Middleware\EntrustRole::class,
+    'permission' => \Pdeio\Entrust\Middleware\EntrustPermission::class,
+    'ability' => \Pdeio\Entrust\Middleware\EntrustAbility::class,
 ```
 
 to `routeMiddleware` array in `app/Http/Kernel.php`.
@@ -87,14 +88,7 @@ To further customize table names and model namespaces, edit the `config/entrust.
 
 ### User relation to roles
 
-Now generate the Entrust migration:
-
-```bash
-php artisan entrust:migration
-```
-
-It will generate the `<timestamp>_entrust_setup_tables.php` migration.
-You may now run it with the artisan migrate command:
+Run tables migrations with the artisan migrate command:
 
 ```bash
 php artisan migrate
@@ -103,8 +97,8 @@ php artisan migrate
 After the migration, four new tables will be present:
 - `roles` &mdash; stores role records
 - `permissions` &mdash; stores permission records
-- `role_user` &mdash; stores [many-to-many](http://laravel.com/docs/4.2/eloquent#many-to-many) relations between roles and users
-- `permission_role` &mdash; stores [many-to-many](http://laravel.com/docs/4.2/eloquent#many-to-many) relations between roles and permissions
+- `role_user` &mdash; stores [many-to-many](https://laravel.com/docs/5.8/eloquent-relationships#updating-many-to-many-relationships) relations between roles and users
+- `permission_role` &mdash; stores [many-to-many](https://laravel.com/docs/5.8/eloquent-relationships#updating-many-to-many-relationships) relations between roles and permissions
 
 ### Models
 
@@ -115,7 +109,7 @@ Create a Role model inside `app/models/Role.php` using the following example:
 ```php
 <?php namespace App;
 
-use Zizaco\Entrust\EntrustRole;
+use Pdeio\Entrust\EntrustRole;
 
 class Role extends EntrustRole
 {
@@ -136,7 +130,7 @@ Create a Permission model inside `app/models/Permission.php` using the following
 ```php
 <?php namespace App;
 
-use Zizaco\Entrust\EntrustPermission;
+use Pdeio\Entrust\EntrustPermission;
 
 class Permission extends EntrustPermission
 {
@@ -157,7 +151,7 @@ Next, use the `EntrustUserTrait` trait in your existing `User` model. For exampl
 ```php
 <?php
 
-use Zizaco\Entrust\Traits\EntrustUserTrait;
+use Pdeio\Entrust\Traits\EntrustUserTrait;
 
 class User extends Eloquent
 {
@@ -195,7 +189,15 @@ $role->forceDelete(); // Now force delete will work regardless of whether the pi
 ```
 
 ## Usage
-
+### Admin
+To set the admin IDs modify the config/entrust.php file. The admin user can manage all ACL cruds. 
+```php
+    'super_admins' => [
+        1,
+        2,
+        5
+    ],
+```
 ### Concepts
 Let's start by creating the following `Role`s and `Permission`s:
 
@@ -378,28 +380,6 @@ Entrust::ability('admin,owner', 'create-post,edit-user');
 Auth::user()->ability('admin,owner', 'create-post,edit-user');
 ```
 
-### Blade templates
-
-Three directives are available for use within your Blade templates. What you give as the directive arguments will be directly passed to the corresponding `Entrust` function.
-
-```php
-@role('admin')
-    <p>This is visible to users with the admin role. Gets translated to 
-    \Entrust::role('admin')</p>
-@endrole
-
-@permission('manage-admins')
-    <p>This is visible to users with the given permissions. Gets translated to 
-    \Entrust::can('manage-admins'). The @can directive is already taken by core 
-    laravel authorization package, hence the @permission directive instead.</p>
-@endpermission
-
-@ability('admin,owner', 'create-post,edit-user')
-    <p>This is visible to users with the given abilities. Gets translated to 
-    \Entrust::ability('admin,owner', 'create-post,edit-user')</p>
-@endability
-```
-
 ### Middleware
 
 You can use a middleware to filter routes and route groups by permission or role
@@ -527,7 +507,7 @@ When trying to use the EntrustUserTrait methods, you encounter the error which l
 
 then probably you don't have published Entrust assets or something went wrong when you did it.
 First of all check that you have the `entrust.php` file in your `config` directory.
-If you don't, then try `php artisan vendor:publish` and, if it does not appear, manually copy the `/vendor/zizaco/entrust/src/config/config.php` file in your config directory and rename it `entrust.php`.
+If you don't, then try `php artisan vendor:publish` and, if it does not appear, manually copy the `/vendor/pdeio/entrust/src/config/config.php` file in your config directory and rename it `entrust.php`.
 
 If your app uses a custom namespace then you'll need to tell entrust where your `permission` and `role` models are, you can do this by editing the config file in `config/entrust.php`
 

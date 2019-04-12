@@ -9,7 +9,34 @@
  */
 
 return [
+  /*
+    |--------------------------------------------------------------------------
+    | MySql Engine (OPTIONAL)
+    |--------------------------------------------------------------------------
+    |
+    | if you use the mysql database, you need to set up a mysql engine, which can
+    | allow the use of foreign keys. It is recommended to use the "InnoDB" engine,
+    | but remember that the USERS table engine must also be set with the same ACL
+    | tables mysql engine.
+    |
+    */
+    'mysql_engine' => 'InnoDB',
+    /*
+    |--------------------------------------------------------------------------
+    | Admins IDs
+    |--------------------------------------------------------------------------
+    |
+    | Here, can set the admin IDs. The admin user can manage all ACL cruds. 
+    |
+    |  'super_admins' => [
+    |       1,
+    |       5,
+    |   ],
+    |
+    */
+    'super_admins' => [
 
+    ],
     /*
     |--------------------------------------------------------------------------
     | Entrust Role Model

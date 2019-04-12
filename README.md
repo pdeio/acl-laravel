@@ -5,7 +5,9 @@ Entrust is a succinct and flexible way to add Role-based Permissions to Laravel 
 My fork is intended to:
 
 Adapt the entrust package to an API backend app;
+
 Update migration tables to work with the new laravel users migration table;
+
 To create the option to have a superuser without any permissions / roles, but that can manage all the permissions and functions of the ACL;
 
 ## Contents
@@ -39,25 +41,13 @@ To create the option to have a superuser without any permissions / roles, but th
 composer require pdeio/entrust
 ```
 
-2) Open your `config/app.php` and add the following to the `providers` array:
-
-```php
-Pdeio\Entrust\EntrustServiceProvider::class,
-```
-
-3) In the same `config/app.php` and add the following to the `aliases ` array: 
-
-```php
-'Entrust'   => Pdeio\Entrust\EntrustFacade::class,
-```
-
-4) Run the command below to publish the package config file `config/entrust.php`:
+2) Run the command below to publish the package config file `config/entrust.php`:
 
 ```shell
 php artisan vendor:publish
 ```
 
-5) Open your `config/auth.php` and add the following to it:
+3) Open your `config/auth.php` and add the following to it:
 
 ```php
 'providers' => [
@@ -69,7 +59,7 @@ php artisan vendor:publish
 ],
 ```
 
-6)  If you want to use [Middleware](#middleware) (requires Laravel 5.1 or later) you also need to add the following:
+4)  If you want to use [Middleware](#middleware) (requires Laravel 5.1 or later) you also need to add the following:
 
 ```php
     'role' => \Pdeio\Entrust\Middleware\EntrustRole::class,

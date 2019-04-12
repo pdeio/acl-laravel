@@ -1,7 +1,16 @@
 {
-    "name": "zizaco/entrust",
-    "description": "This package provides a flexible way to add Role-based Permissions to Laravel",
-    "keywords": ["laravel","illuminate","auth","roles","acl","permission"],
+    "name": "pdeio/entrust",
+    "description": "This package provides a flexible way to add Role-based Permissions to Laravel. ",
+    "keywords": [
+        "laravel",
+        "illuminate",
+        "auth",
+        "roles",
+        "acl",
+        "permission",
+        "pdeio",
+        "api"
+    ],
     "license": "MIT",
     "authors": [
         {
@@ -19,6 +28,10 @@
         {
             "name": "Michele Angioni",
             "email": "michele.angioni@gmail.com"
+        },
+        {
+            "name": "Paulo De Iovanna",
+            "email": "paulodeiovanna@gmail.com"
         }
     ],
     "require": {
@@ -35,19 +48,19 @@
     },
     "autoload": {
         "classmap": [
-            "src/commands"
+            "src/migrations"
         ],
         "psr-4": {
-            "Zizaco\\Entrust\\": "src/Entrust/"
+            "Pdeio\\Entrust\\": "src/Entrust/"
         }
     },
-    "extra":{
-        "laravel":{
-            "providers":[
-                "Zizaco\\Entrust\\EntrustServiceProvider"
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Pdeio\\Entrust\\EntrustServiceProvider"
             ],
-            "aliases":{
-                "Entrust": "Zizaco\\Entrust\\EntrustFacade"
+            "aliases": {
+                "Entrust": "Pdeio\\Entrust\\EntrustFacade"
             }
         }
     },

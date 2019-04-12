@@ -51,7 +51,7 @@ class EntrustAbility
 			$validateAll = filter_var($validateAll, FILTER_VALIDATE_BOOLEAN);
 		}
 
-		if ($this->auth->guest() || !$request->user()->ability($roles, $permissions, [ 'validate_all' => $validateAll ])) {
+		if ($this->auth->guest() || (!$request->user()->ability($roles, $permissions, [ 'validate_all' => $validateAll ])   && array_search(\Auth::user()->id, \Config::get('acl.super_admins')) === false )) {
 			abort(403);
 		}
 

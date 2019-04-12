@@ -43,7 +43,7 @@ class EntrustServiceProvider extends ServiceProvider
     {
         // Publish config files
         $this->mergeConfigFrom(
-            __DIR__ . '/config/config.php',
+            __DIR__ . '/../config/config.php',
             'entrust.php'
         );
         $this->registerEntrust();

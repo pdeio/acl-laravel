@@ -28,7 +28,7 @@ class EntrustServiceProvider extends ServiceProvider
     {
         // register command
         $this->publishes([
-            __DIR__ . '/config/config.php' => config_path('entrust.php'),
+            __DIR__ . '/../config/config.php' => config_path('entrust.php'),
         ]);
         //load migrations and routes
         $this->loadMigrationsFrom(__DIR__ . '/../migrations');

@@ -1,16 +1,12 @@
-# ENTRUST (Laravel 5 Package)
+# ENTRUST (Laravel 5.8 Package)
 
-[![Build Status](https://travis-ci.org/Zizaco/entrust.svg)](https://travis-ci.org/Zizaco/entrust)
-[![Version](https://img.shields.io/packagist/v/Zizaco/entrust.svg)](https://packagist.org/packages/zizaco/entrust)
-[![License](https://poser.pugx.org/zizaco/entrust/license.svg)](https://packagist.org/packages/zizaco/entrust)
-[![Total Downloads](https://img.shields.io/packagist/dt/zizaco/entrust.svg)](https://packagist.org/packages/zizaco/entrust)
+Entrust is a succinct and flexible way to add Role-based Permissions to Laravel 5.
 
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/cc4af966-809b-4fbc-b8b2-bb2850e6711e/small.png)](https://insight.sensiolabs.com/projects/cc4af966-809b-4fbc-b8b2-bb2850e6711e)
+My fork is intended to:
 
-Entrust is a succinct and flexible way to add Role-based Permissions to **Laravel 5**.
-
-If you are looking for the Laravel 4 version, take a look [Branch 1.0](https://github.com/Zizaco/entrust/tree/1.0). It
-contains the latest entrust version for Laravel 4.
+Adapt the entrust package to an API backend app;
+Update migration tables to work with the new laravel users migration table;
+To create the option to have a superuser without any permissions / roles, but that can manage all the permissions and functions of the ACL;
 
 ## Contents
 
@@ -26,7 +22,6 @@ contains the latest entrust version for Laravel 4.
     - [Concepts](#concepts)
         - [Checking for Roles & Permissions](#checking-for-roles--permissions)
         - [User ability](#user-ability)
-    - [Blade templates](#blade-templates)
     - [Middleware](#middleware)
     - [Short syntax route filter](#short-syntax-route-filter)
     - [Route filter](#route-filter)
@@ -37,10 +32,10 @@ contains the latest entrust version for Laravel 4.
 
 ## Installation
 
-1) In order to install Laravel 5 Entrust, just add the following to your composer.json. Then run `composer update`:
+1) In order to install Laravel 5 Entrust, just run:
 
-```json
-"zizaco/entrust": "5.2.x-dev"
+```
+"composer require pdeio/entrust"
 ```
 
 2) Open your `config/app.php` and add the following to the `providers` array:
